@@ -1,0 +1,27 @@
+h1{
+    color: black;
+font-family: 24px;
+}
+h2{
+    color: black;
+    font-family:18px;
+}
+h3{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color :white;
+    width: 100%;
+    background-color: #007bff;
+    overflow: auto;
+  
+}
+h4{
+    color: black;
+    font-family: 16px;
+
+}
+p{
+    color: black;
+    font-family: 12px;
+}
