@@ -1,22 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Formik } from 'formik';
 
 function Signin(){
+    const [isLoading, setIsLoading] = useState();
+
+    const onSubmit = async (data) => {
+        setIsLoading(true);
+        const result = await fetch('https://fields-garage-api.herokuapp.com/users', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(data),
+        });
+
+        const json = await result.json();
+
+        if (json.result.n === '1') {
+            //setInitialValues({});
+        } else {
+            if (json.error) {
+                console.log(json);
+            }
+        }
+
+        setIsLoading(false);
+    }
+
+
     return(
+        <Formik
+        // validationSchema={schema}
+        onSubmit={onSubmit}
+        >
+        {({
+            handleSubmit,
+            handleChange,
+            setFieldValue,
+            handleBlur,
+            values,
+            touched,
+            isValid,
+            errors,
+        }) => (
        <Container fluid="md" className="align-items-center" >
            <div style={{marginLeft:180, marginRight:100, marginTop:150}}>
-            <Form >
+            <Form noValidate onSubmit={handleSubmit}>
                 
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={2}>
                     Email
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control type="email" placeholder="Email" style={{width: "500px"}} />
+                    <Form.Control disabled={isLoading} onChange={handleChange} type="email" placeholder="Email" style={{width: "500px"}} />
                     </Col>
                 </Form.Group>
 
@@ -25,7 +67,7 @@ function Signin(){
                     Password
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control type="password" placeholder="Password" style={{width: "500px"}} />
+                    <Form.Control disabled={isLoading} onChange={handleChange} type="password" placeholder="Password" style={{width: "500px"}} />
                     </Col>
                 </Form.Group>
                 
@@ -48,6 +90,8 @@ function Signin(){
             </Form>
             </div>  
        </Container>
+    )}
+    </Formik>
     );
 }
 

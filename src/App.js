@@ -9,6 +9,7 @@ import Booking from './components/Booking';
 import Perfil from './components/Perfil';
 import Signin from './components/Signin';
 import Admin from './components/Admin';
+import Signup from './components/Signup';
 import Container from 'react-bootstrap/Container';
 
 // CSS
@@ -30,6 +31,7 @@ class App  extends React.Component {
           <Route path="/Perfil" exact component={Perfil}/>
           <Route path="/Admin" exact component={Admin}/>
           <Route path="/Signin" exact component={Signin}/>
+          <Route path="/Signup" exact component={Signup}/>
         </Switch>
       </div>
     </Router>

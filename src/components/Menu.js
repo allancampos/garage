@@ -21,6 +21,7 @@ function Menu(){
                         <Link className="nav-link" to="/Perfil">Perfil</Link>
                         <Link className="nav-link" to="/Admin">Admin</Link>
                         <Link className="nav-link" to="/Signin">Sign in</Link>
+                        <Link className="nav-link" to="/Signup">Sign up</Link>
                     </Nav>
                 </Navbar.Collapse>
 
