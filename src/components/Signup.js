@@ -6,10 +6,11 @@ import Col from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 
-const  Signup = ({ user = { usertype: 'customer'}} ) => {
+const  Signup = ( user = { usertype: 'customer'}) => {
     const [isLoading, setIsLoading] = useState();
     const [initialValues, setInitialValues] = useState(user);
 
+    /* onSubmit - function creates an user account using POST method(API) */
     const onSubmit = async (data) => {
         setIsLoading(true);
         const result = await fetch('https://fields-garage-api.herokuapp.com/users', {
@@ -22,9 +23,10 @@ const  Signup = ({ user = { usertype: 'customer'}} ) => {
         });
 
         const json = await result.json();
-
+        /* If n == 1, The user account was created */
         if (json.result.n === '1') {
             setInitialValues({});
+            alert('Account sucessfully created');
         } else {
             if (json.error) {
                 console.log(json);
@@ -38,7 +40,8 @@ const  Signup = ({ user = { usertype: 'customer'}} ) => {
         <Formik
         // validationSchema={schema}
         onSubmit={onSubmit}
-        initialValues={initialValues}>
+        initialValues={initialValues}
+        >
         {({
             handleSubmit,
             handleChange,
@@ -105,7 +108,8 @@ const  Signup = ({ user = { usertype: 'customer'}} ) => {
                     Password
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control disabled={isLoading} onChange={handleChange} type="password" placeholder="Password" style={{width: "500px"}} />
+                    <Form.Control disabled={isLoading} onChange={handleChange} 
+                    type="password" placeholder="Password" style={{width: "500px"}} name="key" value={values.key} />
                     </Col>
                     </Form.Group>
                 <br/>

@@ -9,6 +9,8 @@ function About(){
        <Container fluid="md" >
            <Row style={{marginLeft:100, marginRight:100, marginTop:100}}>
                <Col>
+                
+                <h2 style={{color:'#007bff'}}> ABOUT US </h2><br/><br/>
                
                 Ger's garage was founded in 2020 in Dublin. Small garage that provides automotive services 
                 by well qualified specialists to service vehicles such as cars, small vans, 

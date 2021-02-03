@@ -5,10 +5,13 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Formik } from 'formik';
+import {Link} from 'react-router-dom';
+
 
 function Signin(){
     const [isLoading, setIsLoading] = useState();
 
+    /* onSubmit - function get user by email from API*/
     const onSubmit = async (data) => {
         setIsLoading(true);
         const result = await fetch('https://fields-garage-api.herokuapp.com/users', {
@@ -24,6 +27,7 @@ function Signin(){
 
         if (json.result.n === '1') {
             //setInitialValues({});
+            alert('Login successful');
         } else {
             if (json.error) {
                 console.log(json);
@@ -51,14 +55,14 @@ function Signin(){
         }) => (
        <Container fluid="md" className="align-items-center" >
            <div style={{marginLeft:180, marginRight:100, marginTop:150}}>
-            <Form noValidate onSubmit={handleSubmit}>
-                
+            {/*<Form noValidate onSubmit={handleSubmit}>*/}
+            <Form>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={2}>
                     Email
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control disabled={isLoading} onChange={handleChange} type="email" placeholder="Email" style={{width: "500px"}} />
+                    <Form.Control disabled={isLoading} onChange={handleChange} name="email"  type="email" placeholder="Email" style={{width: "500px"}} />
                     </Col>
                 </Form.Group>
 
@@ -67,7 +71,7 @@ function Signin(){
                     Password
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control disabled={isLoading} onChange={handleChange} type="password" placeholder="Password" style={{width: "500px"}} />
+                    <Form.Control disabled={isLoading} onChange={handleChange}  type="password" placeholder="Password" style={{width: "500px"}}  />
                     </Col>
                 </Form.Group>
                 
@@ -83,7 +87,10 @@ function Signin(){
                     </Col>
                     <Col >
                     Don't have account? &nbsp;
+                    <Link to="/Signup">
                     <Button type="submit">Sign up</Button>
+                    </Link>
+                    
                     </Col>
                 </Form.Group>
                 

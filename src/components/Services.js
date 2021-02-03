@@ -5,13 +5,21 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './Services.css';
+import {Link} from 'react-router-dom';
 
 function Services(){
     return(
       <Container fluid="md" >
-        <Row style={{marginTop: "100px"}}>
+        <div className="text-center" style={{marginTop:50}}> 
+        <h2> <b>Choose a service plan</b></h2>
+      </div>
+        
+        <Row style={{marginTop: "50px"}}>
+          
           <Col lg className="text-center">
             <Card style={{ width: '18rem', height: '380px' }}>
+
+              {/* Show Services cards with prices */}
 	            <Card.Body>
                     <Card.Title><h3>Repair/Fault or Major Repair</h3></Card.Title>
                     <Card.Text className="text-left">
@@ -22,7 +30,9 @@ function Services(){
                                             
                     </Card.Text>
                     <h4>€20</h4> 
+                    <Link to="/Booking">
                     <Button variant="success">Buy</Button>
+                    </Link>
                 </Card.Body>
             </Card>
           </Col>
@@ -39,7 +49,9 @@ function Services(){
                         
                     </Card.Text>
                     <h4>€40</h4>
+                    <Link to="/Booking">
                     <Button variant="success">Buy</Button>
+                    </Link>
                 </Card.Body>
             </Card>
           </Col>
@@ -55,7 +67,9 @@ function Services(){
                         <br/><br/>
                     </Card.Text>
                     <h4>€125</h4>
+                    <Link to="/Booking">
                     <Button variant="success">Buy</Button>
+                    </Link>
                 </Card.Body>
             </Card>
           </Col>

@@ -5,6 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 
 function Contact(){
+    //Show a message 
+    const showAlert = () =>{
+        alert("Message sent with successfully");
+      }
 
     return(
        <Container fluid="md" >
@@ -23,7 +27,7 @@ function Contact(){
             </Form.Group>  
 
             <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" style={{width:500}} />
             </Form.Group>
             <Form.Group controlId="formBasic">
@@ -31,7 +35,7 @@ function Contact(){
                 <Form.Control type="textarea" as="textarea" rows="5" placeholder="Message..."  />
             </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={showAlert}>
                     Submit
                 </Button>
             </Form>

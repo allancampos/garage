@@ -7,11 +7,12 @@ import Button from 'react-bootstrap/Button';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
+
 const Booking = ({ booking = { status: 'Booked', mechanic: 'Patrick', iduser: 'frontend' } }) => {
     const [isLoading, setIsLoading] = useState();
     const [initialValues, setInitialValues] = useState(booking);
     
-    
+    // Creates a booking by customer using POST method (API)
     const onSubmit = async (data) => {
         setIsLoading(true);
         const result = await fetch('https://fields-garage-api.herokuapp.com/bookings', {
@@ -35,6 +36,8 @@ const Booking = ({ booking = { status: 'Booked', mechanic: 'Patrick', iduser: 'f
 
         setIsLoading(false);
     }
+  
+   
 
     return(
         <Formik
@@ -111,15 +114,20 @@ const Booking = ({ booking = { status: 'Booked', mechanic: 'Patrick', iduser: 'f
 
                     <Form.Group>
                             <Form.Label>Select a date</Form.Label>
-                            <Calendar
+                             <Calendar
                                 disabled={isLoading}
                                 onChange={(date) => setFieldValue('date', date.toISOString())}
                                 tileDisabled={(props) => props.date.getDay() === 0}
                                 name="date"
                                 value={new Date(values.date)}
                                 activeStartDate={new Date()}
+                                minDate={new Date()}
+                                
                             />
+                          
                     </Form.Group>
+                        
+                   
                     
                     <Form.Group controlId="comments">
                         <Form.Label>Comments</Form.Label>
@@ -132,9 +140,12 @@ const Booking = ({ booking = { status: 'Booked', mechanic: 'Patrick', iduser: 'f
                     </Button>
                 
             </Form>
+            
+            
         </Container>
         )}
        </Formik>
+       
     );
 }
 
